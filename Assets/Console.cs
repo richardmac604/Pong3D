@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,8 +8,9 @@ public class Console : MonoBehaviour
 {
     [SerializeField]
     public Text ConsoleText;
-    public InputField inputfield;
-    public GameObject background;
+    public TMP_InputField inputfield;
+    public Camera CamColor;
+    public TMP_Text inputText;
 
 
     // Start is called before the first frame update
@@ -20,16 +22,27 @@ public class Console : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("c"))
-        {
+        //if (Input.GetButtonDown("c"))
+        //{
 
-        }
+        //}
 
     }
 
 
-    public void consoleCommand(string input)
+    public void consoleCommand()
     {
-        ConsoleText.text = input;
+        //ConsoleText.text = inputfield.text;
+
+        try
+        {
+            CamColor.backgroundColor = inputfield.text;
+        }
+        catch
+        {
+            ConsoleText.text("this is not a color");
+        }
+        
+        
     }
 }

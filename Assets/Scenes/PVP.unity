@@ -1432,8 +1432,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConsoleText: {fileID: 1497738221}
-  inputfield: {fileID: 0}
+  inputfield: {fileID: 773256604}
   background: {fileID: 0}
+  inputText: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
