@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class NewBehaviourScript : MonoBehaviour
 {
@@ -14,9 +15,11 @@ public class NewBehaviourScript : MonoBehaviour
     private int playerTwoScore;
 
     public Vector3 spawnPoint;
+    public bool isWinner;
 
     public TextMeshProUGUI playerOneText;
     public TextMeshProUGUI playerTwoText;
+    public TextMeshProUGUI playerTextWinner;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,20 @@ public class NewBehaviourScript : MonoBehaviour
     {
         playerOneText.text = playerOneScore.ToString();
         playerTwoText.text = playerTwoScore.ToString();
+
+        if (playerOneScore > 4)
+        {
+            playerTextWinner.SetText("Player One Wins");
+            StartCoroutine(Delay());
+            
+        }
+        if (playerTwoScore > 4)
+        {
+            playerTextWinner.SetText("Player Two Wins");
+            StartCoroutine(Delay());
+          
+        }
+
     }
 
     void OnCollisionEnter(Collision col)
@@ -49,5 +66,11 @@ public class NewBehaviourScript : MonoBehaviour
             playerOneScore++;
             transform.position = spawnPoint;
         }
+    }
+
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
