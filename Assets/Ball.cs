@@ -20,11 +20,15 @@ public class NewBehaviourScript : MonoBehaviour
     public TextMeshProUGUI playerOneText;
     public TextMeshProUGUI playerTwoText;
     public TextMeshProUGUI playerTextWinner;
+    public Image console;
+    public bool show = true;
     // Start is called before the first frame update
     void Start()
     {
         playerOneScore = 0;
         playerTwoScore = 0;
+
+        console.enabled = false;
 
         float sx = Random.Range(0, 2) == 0 ? -1 : 1;
         float sy = Random.Range(0, 2) == 0 ? -1 : 1;
@@ -50,6 +54,13 @@ public class NewBehaviourScript : MonoBehaviour
             playerTextWinner.SetText("Player Two Wins");
             StartCoroutine(Delay());
           
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            show = !show;
+            console.enabled = show;
+
         }
 
     }

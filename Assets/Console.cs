@@ -3,46 +3,52 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class Console : MonoBehaviour
 {
     [SerializeField]
     public Text ConsoleText;
     public TMP_InputField inputfield;
-    public Camera CamColor;
-    public TMP_Text inputText;
+    public Material ren;
+    public Image menu;
+    public bool show = true;
 
-
-    // Start is called before the first frame update
-    void Start()
+    void update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Debug.Log("c is now pressed");
+            show = !show;
+            menu.enabled = show;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public Color ToColor(string color)
     {
-        //if (Input.GetButtonDown("c"))
-        //{
-
-        //}
-
+        return ((Color)typeof(Color).GetProperty(color.ToLowerInvariant()).GetValue(null, null));
     }
-
 
     public void consoleCommand()
     {
-        //ConsoleText.text = inputfield.text;
-
+        ConsoleText.text = inputfield.text;
+        string placehold;
+        placehold = ConsoleText.text;
+        string lower = placehold.ToLower();
         try
         {
-            CamColor.backgroundColor = inputfield.text;
+            ren.color = ToColor(lower);
         }
         catch
         {
-            ConsoleText.text("this is not a color");
+            ConsoleText.text = "this is not a color";
+            if ("exit" == lower)
+            {
+                SceneManager.LoadScene("MainMenu");
+            }
         }
         
-        
+
     }
 }
